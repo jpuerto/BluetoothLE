@@ -163,9 +163,10 @@ NSString *const operationWrite = @"write";
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:returnObj];
     [pluginResult setKeepCallbackAsBool:true];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:scanCallback];
+    NSDictionary* options = @{CBCentralManagerScanOptionAllowDuplicatesKey: @true};
     
     //Start the scan
-    [centralManager scanForPeripheralsWithServices:serviceUuids options:nil];
+    [centralManager scanForPeripheralsWithServices:serviceUuids options:options];
 }
 
 - (void)stopScan:(CDVInvokedUrlCommand *)command
